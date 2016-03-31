@@ -76,9 +76,9 @@ public class BSTNode<E> {
 
 	/********************************************************************
 	*
-	* Method: setNext
+	* Method: setParent
 	*
-	* Description: Set the next variable of the current node to the desired node
+	* Description: Set the parent variable of the current node to the desired node
 	*
 	* @param BSTNode<E> node
 	*
@@ -90,9 +90,33 @@ public class BSTNode<E> {
 		parent = node;
 	}
 
+  /********************************************************************
+	*
+	* Method: setRight
+	*
+	* Description: Set the right variable of the current node to the desired node
+	*
+	* @param BSTNode<E> node
+	*
+	* @return None
+	*
+	********************************************************************/
+
   public void setRight(BSTNode<E> node){
 		right = node;
 	}
+
+  /********************************************************************
+	*
+	* Method: setLeft
+	*
+	* Description: Set the left variable of the current node to the desired node
+	*
+	* @param BSTNode<E> node
+	*
+	* @return None
+	*
+	********************************************************************/
 
   public void setLeft(BSTNode<E> node){
 		left = node;
@@ -100,7 +124,7 @@ public class BSTNode<E> {
 
 	/********************************************************************
 	*
-	* Method: getNext
+	* Method: getParent
 	*
 	* Description: Returns the next variable from the specific node
 	*
@@ -114,9 +138,33 @@ public class BSTNode<E> {
 		return parent;
 	}
 
+  /********************************************************************
+	*
+	* Method: setRight
+	*
+	* Description: Set the right variable of the current node to the desired node
+	*
+	* @param BSTNode<E> node
+	*
+	* @return None
+	*
+	********************************************************************/
+
   public BSTNode<E> getRight(){
 		return right;
 	}
+
+  /********************************************************************
+	*
+	* Method: setLeft
+	*
+	* Description: Set the next variable of the current node to the desired node
+	*
+	* @param BSTNode<E> node
+	*
+	* @return None
+	*
+	********************************************************************/
 
   public BSTNode<E> getLeft(){
 		return left;
