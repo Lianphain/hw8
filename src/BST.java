@@ -16,8 +16,9 @@
 *
 ***************************************************************************************/
 
-public class BST<Integer extends Comparable<Integer>>{
-  private BSTNode<Integer> root;
+public class BST<E extends Comparable<E>>{
+  private BSTNode<E> root;
+  private int size = 0;
 
   /********************************************************************
 	*
@@ -32,7 +33,7 @@ public class BST<Integer extends Comparable<Integer>>{
 	********************************************************************/
 
   public BST(){
-    root = new BSTNode(null);
+    root = new BSTNode();
   }
 
   /********************************************************************
@@ -47,45 +48,33 @@ public class BST<Integer extends Comparable<Integer>>{
 	*
 	********************************************************************/
 
-  public void add(Integer element){
-    if(root.getData() == null){
-      root.setData(element);
-    }
-    else{
-      BSTNode parent = root;
-      BSTNode curr = root;
-      BSTNode input = new BSTNode(element);
-      if(element > root.getData()){
-        if(root.getRight() == null){
-          root.setRight(input));
-          input.setParent(parent);
+  public void add(E element){
+    BSTNode<E> input = new BSTNode(element);
+    BSTNode<E> curr = root;
+    while(true){
+        if(curr.getData() == null){
+          root.setData(input.getData());
+          size++;
+          break;
         }
-        else{
-          curr = root.getRight();
-          while(element > curr.getData()){
-            if(curr.getRight() != null){
-              curr = curr.getRight();
-            }
-            else{
-              curr.setRight(input);
-              input.setParent(curr);
-            }
-          }
-          while(element < curr.getData()){
-            if(curr.getLeft() != null){
-              curr = curr.getLeft();
-            }
-            else{
-              curr.setLeft(new BSTNode(element)));
-            }
-          }
+        else if((element.compareTo(curr.getData()) == 1) && curr.getRight() == null){
+          curr.setRight(input);
+          input.setParent(curr);
+          size++;
+          break;
         }
-      }
-      if(element < root.getData()){
-        if(root.getLeft() == null){
-          root.setLeft(new BSTNode(element));
+        else if((element.compareTo(curr.getData()) == -1) && curr.getLeft() == null){
+          curr.setLeft(input);
+          input.setParent(curr);
+          size++;
+          break;
         }
-      }
+        else if((element.compareTo(curr.getData()) == 1)){
+          curr = curr.getRight();
+        }
+        else if((element.compareTo(curr.getData()) == -1)){
+          curr = curr.getLeft();
+        }
     }
   }
 
@@ -101,8 +90,8 @@ public class BST<Integer extends Comparable<Integer>>{
 	*
 	********************************************************************/
 
-  public Integer delete(Integer element){
-
+  public E delete(E element){
+    return null;
   }
 
   /********************************************************************
@@ -117,8 +106,8 @@ public class BST<Integer extends Comparable<Integer>>{
 	*
 	********************************************************************/
 
-  public Integer search(Integer element){
-
+  public E search(E element){
+    return null;
   }
 
   /********************************************************************
@@ -133,8 +122,12 @@ public class BST<Integer extends Comparable<Integer>>{
 	*
 	********************************************************************/
 
-  public Integer mini(){
-
+  public E mini(){
+    BSTNode<E> temp = root;
+    while(temp.getLeft() != null){
+      temp = temp.getLeft();
+    }
+    return temp.getData();
   }
 
   /********************************************************************
@@ -149,8 +142,12 @@ public class BST<Integer extends Comparable<Integer>>{
 	*
 	********************************************************************/
 
-  public Integer max(){
-
+  public E max(){
+    BSTNode<E> temp = root;
+    while(temp.getRight() != null){
+      temp = temp.getRight();
+    }
+    return temp.getData();
   }
 
   /********************************************************************
@@ -165,8 +162,8 @@ public class BST<Integer extends Comparable<Integer>>{
 	*
 	********************************************************************/
 
-  public Integer predecessor(Integer element){
-
+  public E predecessor(E element){
+    return null;
   }
 
   /********************************************************************
@@ -181,8 +178,8 @@ public class BST<Integer extends Comparable<Integer>>{
 	*
 	********************************************************************/
 
-  public Integer successor(Integer element){
-
+  public E successor(E element){
+    return null;
   }
 
   /********************************************************************
@@ -198,7 +195,7 @@ public class BST<Integer extends Comparable<Integer>>{
 	********************************************************************/
 
   public int size(){
-
+    return size;
   }
 
   /********************************************************************
@@ -214,7 +211,18 @@ public class BST<Integer extends Comparable<Integer>>{
 	********************************************************************/
 
   public String preorder(){
+    return preorderrec(root);
+  }
 
+  private String preorderrec(BSTNode<E> input){
+    String temp = "";
+    if(input == null){
+      return "";
+    }
+    temp += input.getData() + " ";
+    temp += preorderrec(input.getLeft());
+    temp += preorderrec(input.getRight());
+    return temp;
   }
 
   /********************************************************************
@@ -230,7 +238,7 @@ public class BST<Integer extends Comparable<Integer>>{
 	********************************************************************/
 
   public String postorder(){
-
+    return "";
   }
 
   /********************************************************************
@@ -246,7 +254,7 @@ public class BST<Integer extends Comparable<Integer>>{
 	********************************************************************/
 
   public String inorder(){
-
+    return "";
   }
 
 }
