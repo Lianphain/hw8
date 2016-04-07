@@ -12,16 +12,16 @@
 *
 * FILE: BSTNode.java
 *
-* DESCRIPTION: This file contains the methods and variables necessary to create a single linked list node
+* DESCRIPTION: This file contains the methods and variables necessary to create a BSTNode
 *
 ***************************************************************************************/
 
-public class BSTNode<E> {
+public class BSTNode<Integer> {
 
-    private BSTNode<E> parent;
-    private BSTNode<E> right;
-    private BSTNode<E> left;
-    private E data;
+    private BSTNode<Integer> parent;
+    private BSTNode<Integer> right;
+    private BSTNode<Integer> left;
+    private Integer data;
 
   /********************************************************************
 	*
@@ -35,7 +35,7 @@ public class BSTNode<E> {
 	*
 	********************************************************************/
 
-	public BSTNode(E newData){
+	public BSTNode(Integer newData){
 		data = newData;
 		parent = null;
     right = null;
@@ -54,7 +54,7 @@ public class BSTNode<E> {
 	*
 	********************************************************************/
 
-	public void setData(E newData){
+	public void setData(Integer newData){
 		data = newData;
 	}
 
@@ -70,7 +70,7 @@ public class BSTNode<E> {
 	*
 	********************************************************************/
 
-	public E getData(){
+	public Integer getData(){
 		return data;
 	}
 
@@ -80,13 +80,13 @@ public class BSTNode<E> {
 	*
 	* Description: Set the parent variable of the current node to the desired node
 	*
-	* @param BSTNode<E> node
+	* @param BSTNode<Integer> node
 	*
 	* @return None
 	*
 	********************************************************************/
 
-	public void setParent(BSTNode<E> node){
+	public void setParent(BSTNode<Integer> node){
 		parent = node;
 	}
 
@@ -96,13 +96,13 @@ public class BSTNode<E> {
 	*
 	* Description: Set the right variable of the current node to the desired node
 	*
-	* @param BSTNode<E> node
+	* @param BSTNode<Integer> node
 	*
 	* @return None
 	*
 	********************************************************************/
 
-  public void setRight(BSTNode<E> node){
+  public void setRight(BSTNode<Integer> node){
 		right = node;
 	}
 
@@ -112,13 +112,13 @@ public class BSTNode<E> {
 	*
 	* Description: Set the left variable of the current node to the desired node
 	*
-	* @param BSTNode<E> node
+	* @param BSTNode<Integer> node
 	*
 	* @return None
 	*
 	********************************************************************/
 
-  public void setLeft(BSTNode<E> node){
+  public void setLeft(BSTNode<Integer> node){
 		left = node;
 	}
 
@@ -134,7 +134,7 @@ public class BSTNode<E> {
 	*
 	********************************************************************/
 
-	public BSTNode<E> getParent(){
+	public BSTNode<Integer> getParent(){
 		return parent;
 	}
 
@@ -144,13 +144,13 @@ public class BSTNode<E> {
 	*
 	* Description: Set the right variable of the current node to the desired node
 	*
-	* @param BSTNode<E> node
+	* @param BSTNode<Integer> node
 	*
 	* @return None
 	*
 	********************************************************************/
 
-  public BSTNode<E> getRight(){
+  public BSTNode<Integer> getRight(){
 		return right;
 	}
 
@@ -160,13 +160,13 @@ public class BSTNode<E> {
 	*
 	* Description: Set the next variable of the current node to the desired node
 	*
-	* @param BSTNode<E> node
+	* @param BSTNode<Integer> node
 	*
 	* @return None
 	*
 	********************************************************************/
 
-  public BSTNode<E> getLeft(){
+  public BSTNode<Integer> getLeft(){
 		return left;
 	}
 }

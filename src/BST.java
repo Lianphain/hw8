@@ -16,7 +16,8 @@
 *
 ***************************************************************************************/
 
-public class BST{
+public class BST<Integer extends Comparable<Integer>>{
+  private BSTNode<Integer> root;
 
   /********************************************************************
 	*
@@ -31,6 +32,92 @@ public class BST{
 	********************************************************************/
 
   public BST(){
+    root = new BSTNode(null);
+  }
+
+  /********************************************************************
+	*
+	* Method: setNext
+	*
+	* Description: Set the next variable of the current node to the desired node
+	*
+	* @param BSTNode<E> node
+	*
+	* @return None
+	*
+	********************************************************************/
+
+  public void add(Integer element){
+    if(root.getData() == null){
+      root.setData(element);
+    }
+    else{
+      BSTNode parent = root;
+      BSTNode curr = root;
+      BSTNode input = new BSTNode(element);
+      if(element > root.getData()){
+        if(root.getRight() == null){
+          root.setRight(input));
+          input.setParent(parent);
+        }
+        else{
+          curr = root.getRight();
+          while(element > curr.getData()){
+            if(curr.getRight() != null){
+              curr = curr.getRight();
+            }
+            else{
+              curr.setRight(input);
+              input.setParent(curr);
+            }
+          }
+          while(element < curr.getData()){
+            if(curr.getLeft() != null){
+              curr = curr.getLeft();
+            }
+            else{
+              curr.setLeft(new BSTNode(element)));
+            }
+          }
+        }
+      }
+      if(element < root.getData()){
+        if(root.getLeft() == null){
+          root.setLeft(new BSTNode(element));
+        }
+      }
+    }
+  }
+
+  /********************************************************************
+	*
+	* Method: setNext
+	*
+	* Description: Set the next variable of the current node to the desired node
+	*
+	* @param BSTNode<E> node
+	*
+	* @return None
+	*
+	********************************************************************/
+
+  public Integer delete(Integer element){
+
+  }
+
+  /********************************************************************
+	*
+	* Method: setNext
+	*
+	* Description: Set the next variable of the current node to the desired node
+	*
+	* @param BSTNode<Integer> node
+	*
+	* @return None
+	*
+	********************************************************************/
+
+  public Integer search(Integer element){
 
   }
 
@@ -46,7 +133,7 @@ public class BST{
 	*
 	********************************************************************/
 
-  public void add(E element){
+  public Integer mini(){
 
   }
 
@@ -62,7 +149,7 @@ public class BST{
 	*
 	********************************************************************/
 
-  public E delete(E element){
+  public Integer max(){
 
   }
 
@@ -78,7 +165,7 @@ public class BST{
 	*
 	********************************************************************/
 
-  public E search(E element){
+  public Integer predecessor(Integer element){
 
   }
 
@@ -94,55 +181,7 @@ public class BST{
 	*
 	********************************************************************/
 
-  public E mini(){
-
-  }
-
-  /********************************************************************
-	*
-	* Method: setNext
-	*
-	* Description: Set the next variable of the current node to the desired node
-	*
-	* @param BSTNode<E> node
-	*
-	* @return None
-	*
-	********************************************************************/
-
-  public E max(){
-
-  }
-
-  /********************************************************************
-	*
-	* Method: setNext
-	*
-	* Description: Set the next variable of the current node to the desired node
-	*
-	* @param BSTNode<E> node
-	*
-	* @return None
-	*
-	********************************************************************/
-
-  public E predecessor(E element){
-
-  }
-
-  /********************************************************************
-	*
-	* Method: setNext
-	*
-	* Description: Set the next variable of the current node to the desired node
-	*
-	* @param BSTNode<E> node
-	*
-	* @return None
-	*
-	********************************************************************/
-
-  public E successor(E element){
+  public Integer successor(Integer element){
 
   }
 
