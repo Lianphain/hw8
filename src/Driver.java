@@ -10,6 +10,7 @@ public class Driver{
     test.add(98);
     test.add(33);
     System.out.println(test.preorder());
+    System.out.println(test.inorder());
     System.out.println(test.size());
     System.out.println(test.mini());
     System.out.println(test.max());

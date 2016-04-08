@@ -251,7 +251,6 @@ public class BST<E extends Comparable<E>>{
     if(input == null){
       return "";
     }
-
     temp += input.getData() + " ";
     temp += preorderrec(input.getLeft());
     temp += preorderrec(input.getRight());
@@ -270,8 +269,37 @@ public class BST<E extends Comparable<E>>{
 	*
 	********************************************************************/
 
-  public String postorder(){
-    return "";
+  public String inorder(){
+    String output = "";
+    String [] strarray;
+    if(size == 0){
+      output = "[]";
+    }
+    else{
+      output = inorderrec(root);
+      strarray = output.split(" ");
+      output = "";
+      for(int i = 0; i < strarray.length; i++){
+        if(strarray.length - 1 != i){
+          output += strarray[i] + ", ";
+        }
+        else{
+          output += strarray[i];
+        }
+      }
+    }
+    return "[" + output + "]";
+  }
+
+  public String inorderrec(BSTNode<E> input){
+    String temp = "";
+    if(input == null){
+      return "";
+    }
+    temp += inorderrec(input.getLeft());
+    temp += input.getData() + " ";
+    temp += inorderrec(input.getRight());
+    return temp;
   }
 
   /********************************************************************
@@ -286,8 +314,37 @@ public class BST<E extends Comparable<E>>{
 	*
 	********************************************************************/
 
-  public String inorder(){
-    return "";
+  public String postorder(){
+    String output = "";
+    String [] strarray;
+    if(size == 0){
+      output = "[]";
+    }
+    else{
+      output = postorderrec(root);
+      strarray = output.split(" ");
+      output = "";
+      for(int i = 0; i < strarray.length; i++){
+        if(strarray.length - 1 != i){
+          output += strarray[i] + ", ";
+        }
+        else{
+          output += strarray[i];
+        }
+      }
+    }
+    return "[" + output + "]";
+  }
+
+  public String postorderrec(BSTNode<E> input){
+    String temp = "";
+    if(input == null){
+      return "";
+    }
+    temp += postorderrec(input.getLeft());
+    temp += postorderrec(input.getRight());
+    temp += input.getData() + " ";
+    return temp;
   }
 
 }
