@@ -107,7 +107,21 @@ public class BST<E extends Comparable<E>>{
 	********************************************************************/
 
   public E search(E element){
-    return null;
+    BSTNode<E> curr = root;
+    E temp = null;
+    while(true){
+        if(element.compareTo(curr.getData()) == 0){
+          temp = element;
+          break;
+        }
+        else if((element.compareTo(curr.getData()) == 1)){
+          curr = curr.getRight();
+        }
+        else if((element.compareTo(curr.getData()) == -1)){
+          curr = curr.getLeft();
+        }
+    }
+    return temp;
   }
 
   /********************************************************************
