@@ -110,15 +110,24 @@ public class BST<E extends Comparable<E>>{
     BSTNode<E> curr = root;
     E temp = null;
     while(true){
-        if(element.compareTo(curr.getData()) == 0){
+        if(curr.getData() == null){
+          return null;
+        }
+        else if(element.compareTo(curr.getData()) == 0){
           temp = element;
           break;
         }
-        else if((element.compareTo(curr.getData()) == 1)){
+        else if(element.compareTo(curr.getData()) == 1 && curr.getRight() != null){
           curr = curr.getRight();
         }
-        else if((element.compareTo(curr.getData()) == -1)){
+        else if(element.compareTo(curr.getData()) == -1 && curr.getLeft() != null){
           curr = curr.getLeft();
+        }
+        else if(element.compareTo(curr.getData()) == 1 && curr.getRight() == null){
+          break;
+        }
+        else if(element.compareTo(curr.getData()) == -1 && curr.getLeft() == null){
+          break;
         }
     }
     return temp;
@@ -229,6 +238,7 @@ public class BST<E extends Comparable<E>>{
     String [] strarray;
     if(size == 0){
       output = "[]";
+      return output;
     }
     else{
       output = preorderrec(root);
@@ -274,6 +284,7 @@ public class BST<E extends Comparable<E>>{
     String [] strarray;
     if(size == 0){
       output = "[]";
+      return output;
     }
     else{
       output = inorderrec(root);
@@ -319,6 +330,7 @@ public class BST<E extends Comparable<E>>{
     String [] strarray;
     if(size == 0){
       output = "[]";
+      return output;
     }
     else{
       output = postorderrec(root);
@@ -330,6 +342,7 @@ public class BST<E extends Comparable<E>>{
         }
         else{
           output += strarray[i];
+
         }
       }
     }
@@ -346,5 +359,4 @@ public class BST<E extends Comparable<E>>{
     temp += input.getData() + " ";
     return temp;
   }
-
 }
