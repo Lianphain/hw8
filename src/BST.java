@@ -225,7 +225,25 @@ public class BST<E extends Comparable<E>>{
 	********************************************************************/
 
   public String preorder(){
-    return preorderrec(root);
+    String output = "";
+    String [] strarray;
+    if(size == 0){
+      output = "[]";
+    }
+    else{
+      output = preorderrec(root);
+      strarray = output.split(" ");
+      output = "";
+      for(int i = 0; i < strarray.length; i++){
+        if(strarray.length - 1 != i){
+          output += strarray[i] + ", ";
+        }
+        else{
+          output += strarray[i];
+        }
+      }
+    }
+    return "[" + output + "]";
   }
 
   private String preorderrec(BSTNode<E> input){
@@ -233,6 +251,7 @@ public class BST<E extends Comparable<E>>{
     if(input == null){
       return "";
     }
+
     temp += input.getData() + " ";
     temp += preorderrec(input.getLeft());
     temp += preorderrec(input.getRight());
