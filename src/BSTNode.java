@@ -29,7 +29,7 @@ public class BSTNode<E> {
 	*
 	* Description: Constructor, creates a BSTNode
 	*
-	* @param E newData
+	* @param None
 	*
 	* @return None
 	*
@@ -40,6 +40,18 @@ public class BSTNode<E> {
     right = null;
     left = null;
 	}
+
+  /********************************************************************
+	*
+	* Method: BSTNode
+	*
+	* Description: Constructor, creates a BSTNode with element already inside
+	*
+	* @param E newData
+	*
+	* @return None
+	*
+	********************************************************************/
 
 	public BSTNode(E newData){
 		data = newData;
@@ -132,11 +144,11 @@ public class BSTNode<E> {
 	*
 	* Method: getParent
 	*
-	* Description: Returns the next variable from the specific node
+	* Description: Returns the parent variable from the specific node
 	*
 	* @param None
 	*
-	* @return next
+	* @return parent
 	*
 	********************************************************************/
 
@@ -146,13 +158,13 @@ public class BSTNode<E> {
 
   /********************************************************************
 	*
-	* Method: setRight
+	* Method: getRight
 	*
-	* Description: Set the right variable of the current node to the desired node
+	* Description: Returns the parent variable from the specific node
 	*
-	* @param BSTNode<E> node
+	* @param None
 	*
-	* @return None
+	* @return right
 	*
 	********************************************************************/
 
@@ -162,13 +174,13 @@ public class BSTNode<E> {
 
   /********************************************************************
 	*
-	* Method: setLeft
+	* Method: getLeft
 	*
-	* Description: Set the next variable of the current node to the desired node
+	* Description: Returns the left variable from the specific node
 	*
-	* @param BSTNode<E> node
+	* @param None
 	*
-	* @return None
+	* @return left
 	*
 	********************************************************************/
 

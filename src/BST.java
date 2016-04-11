@@ -22,11 +22,11 @@ public class BST<E extends Comparable<E>>{
 
   /********************************************************************
 	*
-	* Method: setNext
+	* Method: BST
 	*
-	* Description: Set the next variable of the current node to the desired node
+	* Description: Constructor, makes a BST
 	*
-	* @param BSTNode<E> node
+	* @param None
 	*
 	* @return None
 	*
@@ -38,11 +38,11 @@ public class BST<E extends Comparable<E>>{
 
   /********************************************************************
 	*
-	* Method: setNext
+	* Method: add
 	*
-	* Description: Set the next variable of the current node to the desired node
+	* Description: Adds an element to the BST
 	*
-	* @param BSTNode<E> node
+	* @param E element
 	*
 	* @return None
 	*
@@ -80,13 +80,13 @@ public class BST<E extends Comparable<E>>{
 
   /********************************************************************
 	*
-	* Method: setNext
+	* Method: delete
 	*
-	* Description: Set the next variable of the current node to the desired node
+	* Description: Deletes element or returns null if element doesn't exist
 	*
-	* @param BSTNode<E> node
+	* @param E element
 	*
-	* @return None
+	* @return E
 	*
 	********************************************************************/
 
@@ -96,13 +96,13 @@ public class BST<E extends Comparable<E>>{
 
   /********************************************************************
 	*
-	* Method: setNext
+	* Method: search
 	*
-	* Description: Set the next variable of the current node to the desired node
+	* Description: Searchs the bst and returns the element or null if it doesn't exist
 	*
-	* @param BSTNode<Integer> node
+	* @param E element
 	*
-	* @return None
+	* @return E
 	*
 	********************************************************************/
 
@@ -135,13 +135,51 @@ public class BST<E extends Comparable<E>>{
 
   /********************************************************************
 	*
-	* Method: setNext
+	* Method: searchNode
 	*
-	* Description: Set the next variable of the current node to the desired node
+	* Description: Searchs the bst and returns the node with the desired or null if it doesn't exist
 	*
-	* @param BSTNode<E> node
+	* @param E element
 	*
-	* @return None
+	* @return BSTNode<E>
+	*
+	********************************************************************/
+
+  public BSTNode<E> searchNode(E element){
+    BSTNode<E> curr = root;
+    BSTNode<E> temp = null;
+    while(true){
+        if(curr.getData() == null){
+          return null;
+        }
+        else if(element.compareTo(curr.getData()) == 0){
+          temp = curr;
+          return temp;
+        }
+        else if(element.compareTo(curr.getData()) == 1 && curr.getRight() != null){
+          curr = curr.getRight();
+        }
+        else if(element.compareTo(curr.getData()) == -1 && curr.getLeft() != null){
+          curr = curr.getLeft();
+        }
+        else if(element.compareTo(curr.getData()) == 1 && curr.getRight() == null){
+          break;
+        }
+        else if(element.compareTo(curr.getData()) == -1 && curr.getLeft() == null){
+          break;
+        }
+    }
+    return temp;
+  }
+  /********************************************************************
+	*
+	* Method: mini
+	*
+	* Description: Returns the minimum value in the bst or null if it doesn't exist
+	*
+	* @param None
+	*
+	* @return E
 	*
 	********************************************************************/
 
@@ -155,13 +193,13 @@ public class BST<E extends Comparable<E>>{
 
   /********************************************************************
 	*
-	* Method: setNext
+	* Method: max
 	*
-	* Description: Set the next variable of the current node to the desired node
+	* Description: Returns the maximum value in the bst or null if it doesn't exist
 	*
-	* @param BSTNode<E> node
+	* @param None
 	*
-	* @return None
+	* @return E
 	*
 	********************************************************************/
 
@@ -175,13 +213,13 @@ public class BST<E extends Comparable<E>>{
 
   /********************************************************************
 	*
-	* Method: setNext
+	* Method: predecessor
 	*
-	* Description: Set the next variable of the current node to the desired node
+	* Description: Finds the predecessor of the desired element or returns null if it doesn't exist
 	*
-	* @param BSTNode<E> node
+	* @param E element
 	*
-	* @return None
+	* @return E
 	*
 	********************************************************************/
 
@@ -190,30 +228,58 @@ public class BST<E extends Comparable<E>>{
   }
 
   /********************************************************************
-	*
-	* Method: setNext
-	*
-	* Description: Set the next variable of the current node to the desired node
-	*
-	* @param BSTNode<E> node
-	*
-	* @return None
-	*
-	********************************************************************/
+  *
+  * Method: successor
+  *
+  * Description: Finds the successor of the desired element or returns null if it doesn't exist
+  *
+  * @param E element
+  *
+  * @return E
+  *
+  ********************************************************************/
 
   public E successor(E element){
+    BSTNode<E> temp = searchNode(element);
+    System.out.println(temp.getData());
+    BSTNode<E> curr = temp;
+    if(temp == null){
+      return null;
+    }
+    else if(temp.getRight() == null && (temp.getParent().getData().compareTo(temp.getData()) == -1)
+            && (temp.getData().compareTo(root.getData()) == -1)){
+      return root.getData();
+    }
+    else if(temp.getLeft() == null && temp.getRight() == null && (temp.getParent().getData().compareTo(temp.getData()) == -1)
+            && (temp.getParent().getParent().getData().compareTo(temp.getData()) == -1)
+            && (temp.getData().compareTo(root.getData()) == 1)){
+      return null;
+    }
+    else if(temp.getRight() == null && (temp.getParent().getData().compareTo(temp.getData()) == 1)){
+      return temp.getParent().getData();
+    }
+    else if((temp.getParent().getParent().getData().compareTo(temp.getData()) == 1)){
+      return temp.getParent().getParent().getData();
+    }
+    else if(temp.getRight() != null){
+      curr = temp.getRight();
+      while(curr.getLeft() != null){
+        curr = curr.getLeft();
+      }
+      return curr.getData();
+    }
     return null;
   }
 
   /********************************************************************
 	*
-	* Method: setNext
+	* Method: size
 	*
-	* Description: Set the next variable of the current node to the desired node
+	* Description: Returns the size of the bst
 	*
-	* @param BSTNode<E> node
+	* @param None
 	*
-	* @return None
+	* @return int
 	*
 	********************************************************************/
 
@@ -223,13 +289,13 @@ public class BST<E extends Comparable<E>>{
 
   /********************************************************************
 	*
-	* Method: setNext
+	* Method: preorder
 	*
-	* Description: Set the next variable of the current node to the desired node
+	* Description: Calls the recursive method preorderRec
 	*
-	* @param BSTNode<E> node
+	* @param None
 	*
-	* @return None
+	* @return String
 	*
 	********************************************************************/
 
@@ -241,7 +307,7 @@ public class BST<E extends Comparable<E>>{
       return output;
     }
     else{
-      output = preorderrec(root);
+      output = preorderRec(root);
       strarray = output.split(" ");
       output = "";
       for(int i = 0; i < strarray.length; i++){
@@ -256,28 +322,40 @@ public class BST<E extends Comparable<E>>{
     return "[" + output + "]";
   }
 
-  private String preorderrec(BSTNode<E> input){
+  /********************************************************************
+  *
+  * Method: preorderRec
+  *
+  * Description: Traverses through the bst and puts it into a string preorder style
+  *
+  * @param BSTNode<E> input
+  *
+  * @return String
+  *
+  ********************************************************************/
+
+  private String preorderRec(BSTNode<E> input){
     String temp = "";
     if(input == null){
       return "";
     }
     temp += input.getData() + " ";
-    temp += preorderrec(input.getLeft());
-    temp += preorderrec(input.getRight());
+    temp += preorderRec(input.getLeft());
+    temp += preorderRec(input.getRight());
     return temp;
   }
 
   /********************************************************************
-	*
-	* Method: setNext
-	*
-	* Description: Set the next variable of the current node to the desired node
-	*
-	* @param BSTNode<E> node
-	*
-	* @return None
-	*
-	********************************************************************/
+  *
+  * Method: inorder
+  *
+  * Description: Calls the recursive method preorderRec
+  *
+  * @param None
+  *
+  * @return String
+  *
+  ********************************************************************/
 
   public String inorder(){
     String output = "";
@@ -287,7 +365,7 @@ public class BST<E extends Comparable<E>>{
       return output;
     }
     else{
-      output = inorderrec(root);
+      output = inorderRec(root);
       strarray = output.split(" ");
       output = "";
       for(int i = 0; i < strarray.length; i++){
@@ -302,28 +380,40 @@ public class BST<E extends Comparable<E>>{
     return "[" + output + "]";
   }
 
-  public String inorderrec(BSTNode<E> input){
+  /********************************************************************
+  *
+  * Method: inorderRec
+  *
+  * Description: Traverses through the bst and puts it into a string inorder style
+  *
+  * @param BSTNode<E> input
+  *
+  * @return String
+  *
+  ********************************************************************/
+
+  public String inorderRec(BSTNode<E> input){
     String temp = "";
     if(input == null){
       return "";
     }
-    temp += inorderrec(input.getLeft());
+    temp += inorderRec(input.getLeft());
     temp += input.getData() + " ";
-    temp += inorderrec(input.getRight());
+    temp += inorderRec(input.getRight());
     return temp;
   }
 
   /********************************************************************
-	*
-	* Method: setNext
-	*
-	* Description: Set the next variable of the current node to the desired node
-	*
-	* @param BSTNode<E> node
-	*
-	* @return None
-	*
-	********************************************************************/
+  *
+  * Method: postorder
+  *
+  * Description: Calls the recursive method preorderRec
+  *
+  * @param None
+  *
+  * @return String
+  *
+  ********************************************************************/
 
   public String postorder(){
     String output = "";
@@ -333,7 +423,7 @@ public class BST<E extends Comparable<E>>{
       return output;
     }
     else{
-      output = postorderrec(root);
+      output = postorderRec(root);
       strarray = output.split(" ");
       output = "";
       for(int i = 0; i < strarray.length; i++){
@@ -349,13 +439,25 @@ public class BST<E extends Comparable<E>>{
     return "[" + output + "]";
   }
 
-  public String postorderrec(BSTNode<E> input){
+  /********************************************************************
+  *
+  * Method: postorderRec
+  *
+  * Description: Traverses through the bst and puts it into a string postorderRec style
+  *
+  * @param BSTNode<E> input
+  *
+  * @return String
+  *
+  ********************************************************************/
+
+  public String postorderRec(BSTNode<E> input){
     String temp = "";
     if(input == null){
       return "";
     }
-    temp += postorderrec(input.getLeft());
-    temp += postorderrec(input.getRight());
+    temp += postorderRec(input.getLeft());
+    temp += postorderRec(input.getRight());
     temp += input.getData() + " ";
     return temp;
   }
